@@ -1,56 +1,24 @@
 <template>
 
-<!-- <Card>Hello Card 1</Card>
-<br>
-<Card>Hello Card 2</Card>
-<br>
-<Card> <b>Hello Card 3</b></Card> -->
-
-<!-- <slot-comp>
-   
-</slot-comp>
-
-<slot-comp>
-    <h4>Hello from app </h4>
-</slot-comp>
-
-<slot-comp>
-   
-</slot-comp>
-
-<ul v-for="item in items">
-
-   <li>{{ item }}</li>
-
-</ul> -->
+<h4>App class</h4>
 
 
-<!-- more slot -->
 
-<h1>Parent component</h1>
+<Button @click="activeTab = 'TabA'" >TabA</Button>
+<button @click="activeTab = 'TabB'" >TabB</button>
+<button @click="activeTab = 'TabC'" >TabC</button>
 
-<!-- header  -->
-<MoreSlot>
-   <template v-slot:header>
-       <h3>This is header slot</h3>
-   </template>
+<KeepAlive>
+<component :is="activeTab"/>
+</KeepAlive>
 
-<!-- content -->
-
-   <template v-slot:content>
-       <h3>This is content slot </h3>
-   </template>
+<!-- <TabA v-if="activeTab === 'TabA'" />
+<TabB v-if="activeTab === 'TabB'" />
+<TabC v-if="activeTab === 'TabC'" /> -->
 
 
-<!-- footer goes here -->
 
-   <template v-slot:footer>
-       <h3>This is footer slot </h3>
-   </template>
 
-   
-   
-</MoreSlot>
 
 
 
@@ -71,51 +39,49 @@ import Input from './components/Input.vue';
 import Card from './components/Card.vue';
 import SlotComp from './components/SlotComp.vue';
 import MoreSlot from './components/MoreSlot.vue';
+import PropSlot from './components/PropSlot.vue';
+import ChildStyles from './components/ChildStyles.vue';
+import TabA  from './components/TabA.vue';
+import TabB  from './components/TabB.vue';
+import TabC  from './components/TabC.vue';
 
 
 
-export default{
+export default {
 
-   name:"App",
- 
-//   adding components here 
-   components:{
-    greet,
-    Article,
-    popup,
-    FoodItem,
-    Emit,
-    TodoItem,
-    Input,
-    Card,
-    SlotComp,
-    MoreSlot,
+   name: "App",
 
-},
+   //   adding components here 
+   components: {
+      greet,
+      Article,
+      popup,
+      FoodItem,
+      Emit,
+      TodoItem,
+      Input,
+      Card,
+      SlotComp,
+      MoreSlot,
+      PropSlot,
+      ChildStyles,
+      TabA,
+      TabB,
+      TabC,
 
-//  adding 
 
-   data(){
-    return {
-      name:'',
-      showPopup: false ,
-      newItem: '',
-      items: ['Buy apples','Make pizza','Mow the lawn']
-    }
+
    },
 
-//  adding methods here  
+   //  adding data 
 
-   methods:{
+   data() {
+      return {
 
-      addItem(){
-        this.items.push(this.newItem),
-        this.newItem = '';
+         activeTab: 'TabA'
+
       }
-   
    }
-
-
 
 }
 
@@ -125,6 +91,35 @@ export default{
 
 <!-- style  -->
 <style>
+
+#app{
+
+   background-color: antiquewhite;
+   text-align: center;
+
+}
+
+h4{
+    color: red;
+    text-decoration: solid;
+}
+
+button {
+  background-color: #62eeee; 
+  border: solid black;
+  border-style: double;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  border-radius: 12px ;
+
+}
+button:hover {background-color: #084c94}
+
 
 
 
