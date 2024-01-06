@@ -14,6 +14,15 @@
     <h4>Hello from app </h4>
 </slot-comp>
 
+<slot-comp>
+   
+</slot-comp>
+
+<ul v-for="item in items">
+
+   <li>{{ item }}</li>
+
+</ul>
 
 </template>
 
