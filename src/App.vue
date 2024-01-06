@@ -6,7 +6,7 @@
 <br>
 <Card> <b>Hello Card 3</b></Card> -->
 
-<slot-comp>
+<!-- <slot-comp>
    
 </slot-comp>
 
@@ -22,7 +22,38 @@
 
    <li>{{ item }}</li>
 
-</ul>
+</ul> -->
+
+
+<!-- more slot -->
+
+<h1>Parent component</h1>
+
+<!-- header  -->
+<MoreSlot>
+   <template v-slot:header>
+       <h3>This is header slot</h3>
+   </template>
+
+<!-- content -->
+
+   <template v-slot:content>
+       <h3>This is content slot </h3>
+   </template>
+
+
+<!-- footer goes here -->
+
+   <template v-slot:footer>
+       <h3>This is footer slot </h3>
+   </template>
+
+   
+   
+</MoreSlot>
+
+
+
 
 </template>
 
@@ -39,6 +70,8 @@ import TodoItem from './components/TodoItem.vue';
 import Input from './components/Input.vue';
 import Card from './components/Card.vue';
 import SlotComp from './components/SlotComp.vue';
+import MoreSlot from './components/MoreSlot.vue';
+
 
 
 export default{
@@ -47,17 +80,18 @@ export default{
  
 //   adding components here 
    components:{
-     greet , 
-     Article,
-     popup,
-     FoodItem,
-     Emit , 
-     TodoItem ,
-     Input,
-     Card,
-     SlotComp,
+    greet,
+    Article,
+    popup,
+    FoodItem,
+    Emit,
+    TodoItem,
+    Input,
+    Card,
+    SlotComp,
+    MoreSlot,
 
-   },
+},
 
 //  adding 
 
