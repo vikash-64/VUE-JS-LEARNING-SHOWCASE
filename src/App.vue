@@ -4,20 +4,36 @@
 
 
 
-<Button @click="activeTab = 'TabA'" >TabA</Button>
+<!-- <Button @click="activeTab = 'TabA'" >TabA</Button>
 <button @click="activeTab = 'TabB'" >TabB</button>
-<button @click="activeTab = 'TabC'" >TabC</button>
+<button @click="activeTab = 'TabC'" >TabC</button> -->
 
-<KeepAlive>
+<!-- <KeepAlive>
 <component :is="activeTab"/>
-</KeepAlive>
+</KeepAlive> -->
 
 <!-- <TabA v-if="activeTab === 'TabA'" />
 <TabB v-if="activeTab === 'TabB'" />
 <TabC v-if="activeTab === 'TabC'" /> -->
 
 
+<!-- <Teleport to="#portal-element">
 
+   <portal/>
+
+</Teleport> -->
+
+
+
+
+<HttpRequest v-for="movie in movies" :key="movie.id">
+   <ul>
+      <li>
+        <p>{{ movie.name }} {{ movie.release_date }}</p> 
+      </li>
+    </ul>
+</HttpRequest>
+<button @click="FetchData">Fetch Movies</button>
 
 
 
@@ -28,6 +44,7 @@
 <!-- script  -->
 
 <script>
+import axios from 'axios';
 
 import greet from './components/greet.vue';
 import Article from './components/Article.vue';
@@ -44,6 +61,10 @@ import ChildStyles from './components/ChildStyles.vue';
 import TabA  from './components/TabA.vue';
 import TabB  from './components/TabB.vue';
 import TabC  from './components/TabC.vue';
+import Portal from './components/Portal.vue';
+import HttpRequest from './components/HttpRequest.vue'
+
+
 
 
 
@@ -68,6 +89,8 @@ export default {
       TabA,
       TabB,
       TabC,
+      Portal,
+      HttpRequest ,
 
 
 
@@ -78,10 +101,32 @@ export default {
    data() {
       return {
 
-         activeTab: 'TabA'
+         activeTab: 'TabA',
+         movies: [] ,
 
       }
+   },
+
+   methods: {
+
+      FetchData() {
+      axios.get('http://127.0.0.1:8000/api/movies/')
+      .then(respose=>{
+          this.movies = respose.data 
+      })
+
+      .catch( error =>{
+         console.error("Error in fetching movies" , error)
+      }
+
+      )
    }
+
+   },
+
+
+
+
 
 }
 
